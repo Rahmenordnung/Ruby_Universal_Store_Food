@@ -37,11 +37,17 @@
         <% shipping = 30 %>
       <% end %>
       <% @overall = shipping + @total %>
-      <td>Shipping &euro; <%= shipping %></td>
+      <td>Shipping</td>
+      <td></td>
+      <td></td>
+      <td>&euro; <%= shipping %></td>
       <% @overall = shipping + @total %>
     </tr>
     <tr>
-      <td><strong>Total &euro;<strong> <%= @overall %></td>
+      <td><strong>Total</strong></td>
+      <td></td>
+      <td></td>
+      <td><strong>&euro; <%= @overall %></strong></td>
     </tr>
   </tbody>
 </table>

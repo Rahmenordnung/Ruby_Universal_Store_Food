@@ -66,6 +66,10 @@
 </table>
 
 
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <%= link_to 'Edit', edit_order_path(@order) %> |
+  <% end %>
+<% end %>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

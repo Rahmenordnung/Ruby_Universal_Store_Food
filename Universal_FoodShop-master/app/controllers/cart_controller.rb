@@ -18,7 +18,7 @@ class CartController < ApplicationController
     cart[id]= 1
   end  
   
-    redirect_to :action => :index
+    redirect_to :controller => 'items', :action => 'index'
   
   end
 

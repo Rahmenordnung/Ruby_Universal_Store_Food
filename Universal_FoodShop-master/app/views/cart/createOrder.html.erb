@@ -1,80 +1,61 @@
 <div id="itemsContainer">
-    <h1>Thank You<br>
-You have just placed an order <%=@orders.id %>
-</h1>
+  <h3>Thank You</h3>
+  <p>Your order has been placed. Your order number is <%=@orders.id %>.</p>
 </div>
 
-<table id="customers">
-     <% @total = 0 %>
+<% @total = 0 %>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Product Title</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price per Item</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
     <% @orderitems.each do |id,quantity| %>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-            <th scope="col">Product Title</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price per Item</th>
-            <th scope="col">Total Price</th>
-            
-     
-            </tr>
-        </thead>
-        <tbody>
-          
-                <tr>
+      <tr>
         <% item = Orderitem.find_by_id(id) %>
-       
         <td><%= item.title %></td>
         <td><%= item.quantity %></td>
         <td><%=number_to_currency(item.price, :unit => "€")%></td> 
         <td><%= number_to_currency(item.quantity * item.price, :unit => "€") %></td>
       </tr>
-       
-       <% total = (item.quantity * item.price)%>  
-     
-     
-      <% @total += total %>
       
-          <%# shipping condition %>
-     <tr>
-        <% if @total > 20 %>  
-          <% shipping = 5 %>
-            <% @overall = shipping + @total%>
-        <tr>
-          <td>Shipping &euro; 5</td>
-          
-        </tr>
-        <% else %>
-          <% shipping = 30 %>
-            <% @overall = shipping + @total%>
-        <tr>
-          <td>Shipping &euro; 30</td>
-          
-        </tr>
+      <% total = (item.quantity * item.price)%>  
     
+      <% @total += total %>
+    
+    <% end %>
+
+    <%# shipping condition %>
+    <tr>
+      <% if @total > 20 %>  
+        <% shipping = 5 %>
+      <% else %>
+        <% shipping = 30 %>
+      <% end %>
+      <% @overall = shipping + @total %>
+      <td>Shipping &euro; <%= shipping %></td>
+      <% @overall = shipping + @total %>
     </tr>
+    <tr>
+      <td><strong>Total &euro;<strong> <%= @overall %></td>
+    </tr>
+  </tbody>
+</table>
+    
+<p><a href="/paid/<%= @orders.id %>" class="button">Pay With Credit Card</a></p>
       
-    <% end %>
-       <td><strong>You Pay &euro;<strong> <%= @overall %></td>
-      
-      </tr>
-    <% end %>
-
-        </tbody>
-    </table>
-
-      
-      <tr>
-          <td><h2>  <a href="/paid/<%= @orders.id %>" class="button">Pay Now</a></h2></td>
-      </tr>
-      
-      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="company2@liammccabe.ie">
-<input type="hidden" name="item_name" value="Golf Store Order Number <%= @orderNum %>">
-<input type="hidden" name="currency_code" value="EUR">
-<input type="hidden" name="amount" value="<%= @overall %>">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-<input type="hidden" name="return" value="https://rails-container-liamme.c9users.io/" >
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+  <input type="hidden" name="cmd" value="_xclick">
+  <input type="hidden" name="business" value="company2@liammccabe.ie">
+  <input type="hidden" name="item_name" value="Golf Store Order Number <%= @orderNum %>">
+  <input type="hidden" name="currency_code" value="EUR">
+  <input type="hidden" name="amount" value="<%= @overall %>">
+  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+  <input type="hidden" name="return" value="https://rails-container-liamme.c9users.io/" >
 </form>
 
      

@@ -15,9 +15,9 @@
             <th scope="col">Quantity</th>
             <th scope="col">Price</th>
             <th scope="col">Total Price</th>
-            <th scope="col">remove</th>
-            <th scope="col">increse</th>
-            <th scope="col">decrese</th>
+            <th scope="col">Remove</th>
+            <th scope="col">Increase Quantity</th>
+            <th scope="col">Decrease Quantity</th>
             </tr>
         </thead>
         <tbody>
@@ -29,9 +29,9 @@
                 <td><%= quantity %></td>
                 <td ><%= number_to_currency(item.price, :unit =>"€") %></td>
                 <td><%= number_to_currency(quantity * item.price, :unit =>"€") %></td>
-                <td><a href="/cart/remove/<%= item.id %>" >Remove From Cart</a></td>
-                <td><a href="/cart/decrease/<%= item.id %>" class="button">Increase</a></td>           
-                <td><a href="/cart/increase/<%= item.id %>" class="button">Decrease </a></td>
+                <td class="no-padding"><a href="/cart/remove/<%= item.id %>" class="button">Remove All</a></td>
+                <td class="no-padding"><a href="/cart/decrease/<%= item.id %>" class="button">Add 1</a></td>           
+                <td class="no-padding"><a href="/cart/increase/<%= item.id %>" class="button">Remove 1</a></td>
                 </tr>
                 <tr>
                     <% total += quantity * item.price %>

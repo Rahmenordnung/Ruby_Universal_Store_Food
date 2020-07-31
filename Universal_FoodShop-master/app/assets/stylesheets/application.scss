@@ -195,15 +195,24 @@ li a {
     border-radius:10px;
 }
 
-/* grid layout */
-.col-3 {
-    clear:both;
-    width:100% !important;
-    max-width:100% !important;
+//search bar
+nav.navbar form {
+  height:78px;
 }
 
-.col-3 div {width:30%;margin-right:3.5%;margin-left:0px;padding:0px;}
-.col-3 div:nth-child(3) {margin-right:0px;}
+nav.navbar form input#q {
+  width:200px !important;
+}
+
+p.adv-search {
+  margin:0px;
+  color:#fff;
+}
+
+nav.navbar form input#q, p.adv-search {
+  position:relative;
+  top:-20px;
+}
 
 //new buttons
 @import url('https://fonts.googleapis.com/css?family=Mukta:700');

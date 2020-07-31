@@ -1,30 +1,30 @@
-
-
-<div role="alert">
-  <p class="alert alert-success"><%= notice %></p>
+<div id="single-item">
+  <%= image_tag @item.image_url, :class => 'item-image'  %>
+  <h3><%= @item.title %></h3>
+  <h4>Description:</h4>
+  <p><%= @item.description %></p>
+  <p>
+    Price <%= number_to_currency(@item.price, :unit => "€") %>
+    <br>
+    Category: <%= @item.category %>
+    <br>
+    <%#= Brand: <%= @item.brand %>
+  </p>
+  <%= link_to 'Back to Products',  items_path, :class => "button", :role => "button" %>
+  
+  <!-- show "sold out" or "add to cart" -->
+  <% if @item.inStock? %>
+    <p>
+        <button class="btn1" onclick="window.location.href='/cart/<%= @item.id %>'">
+          <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Add to Cart</span>
+        </button>
+    </p>
+  <% else %>
+    <p class="error">Sold Out</p>
+  <% end %>
 </div>
-
- <div id="itemsContainer">
-   <h1><%= @item.title %></h1>
-   <%= image_tag @item.image_url, :class => 'welcomIm'  %>
-       <h2><%= @item.description %></h1>
-   
-    <div class="itemhols">
-       <p>Price <%= number_to_currency(@item.price, :unit => "€") %>
-       <br>
-        Category: <%= @item.category %>
-        <br>
-        <%#= Brand: <%= @item.brand %></p>
-       
-       <p>
-         <%= link_to 'Back',  items_path, :class => "button", :role => "button" %>
-         <%= link_to 'Edit',  edit_item_path(@item), :class => "button", :role => "button" %>
-         
-       </p>
-        
-      </div>
-   
-   
-   </div>
 
 

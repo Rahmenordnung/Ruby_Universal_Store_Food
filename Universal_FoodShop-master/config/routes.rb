@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'static_pages/admin'
+
   resources :proveniences
   resources :categories
   get 'orderitems/index'
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get '/help' => 'static_pages#help' 
   get '/about'=> 'static_pages#about'
+  get '/admin'=> 'static_pages#admin'
   get '/products'=> 'items#index'
   
 
@@ -43,7 +46,7 @@ Rails.application.routes.draw do
   get '/logout' => 'user#logout'
 
   #admin login routes -------------
-   get 'admin' => 'user#login'
+   #get 'admin' => 'user#login'
 
   #user cart routes------------------
   get '/cart/clear', to: 'cart#clearCart'

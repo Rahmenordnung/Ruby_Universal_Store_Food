@@ -14,8 +14,8 @@ background-color:transparent;
 }
 
 .card-img-top {
-width:auto;
-max-width:100%;
+width:60%;
+max-width:60%;
 }
 
 #itemsContainer {
@@ -95,4 +95,8 @@ max-width:100%;
 p.error {
     color:#f00;
     font-weight:bold;
+}
+
+ul.pagination li.page-item.disabled {
+    display:none;
 }

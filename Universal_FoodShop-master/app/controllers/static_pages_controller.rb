@@ -9,6 +9,9 @@ class StaticPagesController < ApplicationController
 
   def about
   end
+
+  def admin
+  end
   
   def thankyou
     @order =Order.find(params[:id])

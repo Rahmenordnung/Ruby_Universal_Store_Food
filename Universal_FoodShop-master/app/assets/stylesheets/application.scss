@@ -46,9 +46,8 @@ body {
   height: 100%;
 }
 .container {
-	height:100%;
   max-width:100% !important;
-  min-height:0px!important;
+  min-height:0px !important;
   margin:0px !important;
   padding:0px !important;
 	background: url("/assets/Site/clubhead.png");
@@ -58,6 +57,10 @@ body {
 }
 form{
     height:100%;
+}
+.container form {
+  width:80%;
+  margin:auto;
 }
 #page-content {
   flex: 1 0 auto;

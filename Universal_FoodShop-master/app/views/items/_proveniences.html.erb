@@ -1,20 +1,31 @@
 <div class="proveniences">
     
-    <h3>Provenience</h3>
+    <h3>Proveniences</h3>
 
-    <div class="col-3">
     <% @proveniences.each do |provenience| %>
     
         <div class="itemhols">
-            <p><%= provenience.title %></p>
-            <%= link_to (image_tag provenience.image, :class=>"itemholsIm"), provenience %>
-            <p><%= provenience.description %></p>
             
-            <p><a href="/provenience/<%= provenience.title %>" class="button"><%= provenience.title %></a></p>
+            <div class="card border-info mb-3 ml-3 mr-3">
+                <%= link_to (image_tag provenience.image, :class=>"card-img-top"), provenience %>
+                <div class="card-body">
+                    <h1 class="card-title"><%= provenience.title %></h1>
+                    <p><%= provenience.description %></p>
+
+                    <p>
+                        <button class="btn1" onclick="window.location.href='/provenience/<%= provenience.title %>'">
+                            <span class="circle" aria-hidden="true">
+                                <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text"><%= provenience.title %> Items</span>
+                        </button>
+                    </p>
+                </div><!-- end card-body -->       
+            </div><!-- end card -->
+            <div class="clear">&nbsp;</div>
         </div>
 
     <% end %>
-    </div>
 
 </div>
 <div class="clear"></div>

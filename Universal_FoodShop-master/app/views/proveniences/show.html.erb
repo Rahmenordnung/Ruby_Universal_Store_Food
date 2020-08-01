@@ -1,19 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @provenience.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @provenience.description %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @provenience.image %>
-</p>
-
-<%= link_to 'Edit', edit_provenience_path(@provenience) %> |
-<%= link_to 'Back', proveniences_path %>
+<div id="single-item">
+  <%= image_tag @provenience.image, :class => 'item-image'  %>
+  <h3><%= @provenience.title %></h3>
+  <h4>Description:</h4>
+  <p><%= @provenience.description %></p>
+  
+  <%= link_to 'Back to Proveniences',  proveniences_path, :class => "button", :role => "button" %>
+  
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <a <%= link_to 'Edit', edit_provenience_path(@provenience), :role=>"button" %></a>
+      <a <%= link_to 'Destroy', @provenience, method: :delete, data: { confirm: 'Are you sure?' }, :role=>"button" %></a>
+    <% end %>
+  <% end %>
+</div>

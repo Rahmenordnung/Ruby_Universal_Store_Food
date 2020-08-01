@@ -76,37 +76,20 @@
               <!-- show "sold out" or "add to cart" -->
               <% if item.inStock? %>
                 <p>
-                    <button class="btn1" onclick="window.location.href='/cart/<%= item.id %>'">
-                      <span class="circle" aria-hidden="true">
-                          <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Add to Cart</span>
-                    </button>
+                  <button class="btn1" onclick="window.location.href='/cart/<%= item.id %>'">
+                    <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text">Add to Cart</span>
+                  </button>
                 </p>
               <% else %>
                 <p class="error">Sold Out</p>
               <% end %>
         
-            </div><!-- end card-body -->
-
-            <% if user_signed_in? %>
-              <% if current_user.admin? %>
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin user options
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a <%= link_to "All users List", "/allusers", :class =>"dropdown-item" %></a> 
-                        <a <%= link_to 'New Item',  new_item_path, :class => "dropdown-item", :role => "button" %> </a>
-                        <a <%= link_to 'Edit', edit_item_path(item), :class =>"dropdown-item", :role=>"button" %></a>
-                        <a <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"dropdown-item", :role=>"button" %></a>
-                        <a <%= link_to 'New Category', new_category_path, :class =>"dropdown-item", :role=>"button"  %></a>
-                        <a <%= link_to 'New provenience area', new_provenience_path, :class =>"dropdown-item", :role=>"button"  %></a>  
-                    </div>
-                  </div>
-              <% end %>
-            <% end %>        
+            </div><!-- end card-body -->       
           </div><!-- end card -->
+          <div class="clear">&nbsp;</div>
         </div><!-- end itemhols -->
       <% end %>
         

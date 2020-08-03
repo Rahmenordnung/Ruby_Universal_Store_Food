@@ -4,16 +4,21 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-        
-    @user = User.find(current_user.id)
-    @orders = @user.orders.all
-    
+    @user = current_user
+    if user_signed_in?
+      if !current_user.admin?
+        @orders = @user.orders.all
+      else
+        @orders = Order.all
+      end
+    else
+      not_an_admin
+    end
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @user = User.find(current_user.id)
     @orderitems = Orderitem.where(order_id: params[:id])
   end
 
@@ -92,7 +97,7 @@ class OrdersController < ApplicationController
 
   # redirect to orders with a warning message
   def not_an_admin
-    redirect_to "/orders"
+    redirect_to "/"
     flash[:notice] = 'This page is not accessible'
   end
 

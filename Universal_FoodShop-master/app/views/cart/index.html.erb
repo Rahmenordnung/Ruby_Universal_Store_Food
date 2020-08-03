@@ -37,11 +37,18 @@
                     <% total += quantity * item.price %>
                 </tr>
             <% end %>
-                <tr>
-                    Total: <%= number_to_currency(total, :unit => "€") %>
-                </tr>
         </tbody>
     </table>
+    <p>Net Total: <%= number_to_currency(total, :unit => "€") %>
+    <%#shipping costs %>
+    <% if total<20 %>
+        <% shipping=30 %>
+        <br>spend €<%= 20-total %> more to get shipping for just €5!
+    <% else %>
+        <% shipping=5 %>
+    <% end %>
+    <br>Shipping: <%= number_to_currency(shipping, :unit => "€") %></p>
+    <br><p class="price">Total: <%= number_to_currency(total+shipping, :unit => "€") %></p>
     <div class="clear"></div>
     
     <!-- if the cart has items, show checkout button -->

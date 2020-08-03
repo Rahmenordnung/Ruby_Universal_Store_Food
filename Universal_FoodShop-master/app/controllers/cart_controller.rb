@@ -4,21 +4,22 @@ class CartController < ApplicationController
     # get the Id of the product
     id = params[:id]
     
-   # if the cart is already been created, use existing cart else create a blank cart
-  if session[:cart] then
-    cart = session[:cart]
-  else
-    session[:cart] = {}
-    cart = session[:cart]
-  end
-  #If the product is already added it increments by 1 else product set to 1
-  if cart[id] then
-    cart[id] = cart[id] + 1
-  else
-    cart[id]= 1
-  end  
+    # if the cart is already been created, use existing cart else create a blank cart
+    if session[:cart] then
+      cart = session[:cart]
+    else
+      session[:cart] = {}
+      cart = session[:cart]
+    end
+    #If the product is already added it increments by 1 else product set to 1
+    if cart[id] then
+      cart[id] = cart[id] + 1
+    else
+      cart[id]= 1
+    end  
   
     redirect_to :controller => 'items', :action => 'index'
+    flash[:notice] = 'Item added to cart'
   
   end
 

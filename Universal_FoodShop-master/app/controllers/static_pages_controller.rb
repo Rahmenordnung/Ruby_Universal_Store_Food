@@ -50,24 +50,23 @@ class StaticPagesController < ApplicationController
     
   end
   
-    def upgrade 
-      @user = User.find_by(id: params[:id])
-      @user.update_attribute(:admin, true)
-      redirect_to "/"
-    end
-	  
-   def downgrade 
+  def upgrade 
     @user = User.find_by(id: params[:id])
     @user.update_attribute(:admin, true)
     redirect_to "/"
   end
+  
+  def downgrade 
+  @user = User.find_by(id: params[:id])
+  @user.update_attribute(:admin, false)
+  redirect_to "/"
+  end
 
 
   
-def allusers
-  
-  @users = User.all
-end
+  def allusers
+    @users = User.all
+  end
 
   
 end

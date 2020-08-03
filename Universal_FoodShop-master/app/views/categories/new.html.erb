@@ -1,9 +1,5 @@
-<% if user_signed_in? %>
-    <% if current_user.admin? %>
-        <h1>New Category</h1>
+<h1>New Category</h1>
 
-        <%= render 'form', category: @category %>
-    <% end %>
-<% end %>
+<%= render 'form', category: @category %>
         
 <%= link_to 'Back', categories_path %>

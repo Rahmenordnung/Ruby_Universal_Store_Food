@@ -14,11 +14,26 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    @category = Category.new
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      else
+        @category = Category.new
+      end
+    else
+      not_an_admin
+    end
   end
 
   # GET /categories/1/edit
   def edit
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      end
+    else
+      not_an_admin
+    end
   end
 
   # POST /categories
@@ -54,11 +69,25 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      else
+        @category.destroy
+        respond_to do |format|
+          format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
+    else
+      not_an_admin
     end
+  end
+
+  # redirect to categories with a warning message
+  def not_an_admin
+    redirect_to "/categories"
+    flash[:notice] = 'This page is not accessible'
   end
 
   private

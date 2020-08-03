@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all.paginate(page: params[:page], per_page: 4)
+    @items = Item.all.paginate(page: params[:page], per_page: 6)
     
     @categories = Category.all
     
@@ -19,11 +19,26 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      else
+        @item = Item.new
+      end
+    else
+      not_an_admin
+    end
   end
 
   # GET /items/1/edit
   def edit
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      end
+    else
+      not_an_admin
+    end
   end
 
   # POST /items
@@ -45,14 +60,22 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
       else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          if @item.update(item_params)
+            format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+            format.json { render :show, status: :ok, location: @item }
+          else
+            format.html { render :edit }
+            format.json { render json: @item.errors, status: :unprocessable_entity }
+          end
+        end
       end
+    else
+      not_an_admin
     end
   end
   
@@ -65,11 +88,25 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item.destroy
-    respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      else
+        @item.destroy
+        respond_to do |format|
+          format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
+    else
+      not_an_admin
     end
+  end
+
+  # redirect to products with a warning message
+  def not_an_admin
+    redirect_to "/products"
+    flash[:notice] = 'This page is not accessible'
   end
 
   private

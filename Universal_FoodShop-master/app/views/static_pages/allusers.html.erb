@@ -1,26 +1,31 @@
- <div class="mainCont">
-    
-    <h1>All The People...... So Many People....in this universal store.....</h1>
-    
-<%# table for all users  %>    
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">User Id </th>
-          <th scope="col">Email</th>
-          <th scope="col">Admin</th>
-          <th scope="col">action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <div class="mainCont">
+  
+      <h1>All The People...... So Many People....in this universal store.....</h1>
+        
+      <%# table for all users  %>    
+      <table class="table">
+        <thead class="thead-dark">
           <tr>
-            <td>User Id:  <%= user.id %> ></td>
-            <td>email: <%= user.email %></td>
-            <td>Admin: <%= user.admin %></td>
-            <td> <a href="/upgrade/<%= user.id %>" class="button">Make Admin</a></td>
+            <th scope="col">User Id </th>
+            <th scope="col">Email</th>
+            <th scope="col">Admin</th>
+            <th scope="col" colspan=2>action</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-</div>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td>User Id:  <%= user.id %></td>
+              <td>email: <%= user.email %></td>
+              <td>Admin: <%= user.admin %></td>
+              <td> <a href="/upgrade/<%= user.id %>" class="button">Make Admin</a></td>
+              <td> <a href="/downgrade/<%= user.id %>" class="button">Remove Admin</a></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<% end %>

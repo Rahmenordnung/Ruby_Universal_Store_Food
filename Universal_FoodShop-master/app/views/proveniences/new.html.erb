@@ -1,9 +1,5 @@
-<% if user_signed_in? %>
-    <% if current_user.admin? %>
-        <h1>New Provenience</h1>
+<h1>New Provenience</h1>
 
-        <%= render 'form', provenience: @provenience %>
-    <% end %>
-<% end %>
+<%= render 'form', provenience: @provenience %>
 
 <%= link_to 'Back', proveniences_path %>

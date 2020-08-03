@@ -1,9 +1,5 @@
-<% if user_signed_in? %>
-    <% if current_user.admin? %>
-        <h1>New Item</h1>
+<h1>Add New Item</h1>
 
-        <%= render 'form', item: @item %>
-    <% end %>
-<% end %>
+<%= render 'form', item: @item %>
 
 <%= link_to 'Back', items_path %>

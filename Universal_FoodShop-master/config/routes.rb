@@ -76,7 +76,7 @@ Rails.application.routes.draw do
   
     #admin related routes
   get '/upgrade/:id' => 'static_pages#upgrade'
-  get '/upgrade/:id' => 'static_pages#downgrade'
+  get '/downgrade/:id' => 'static_pages#downgrade'
 
   
   

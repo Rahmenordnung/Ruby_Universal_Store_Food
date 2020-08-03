@@ -14,11 +14,26 @@ class ProveniencesController < ApplicationController
 
   # GET /proveniences/new
   def new
-    @provenience = Provenience.new
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      else
+        @provenience = Provenience.new
+      end
+    else
+      not_an_admin
+    end
   end
 
   # GET /proveniences/1/edit
   def edit
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      end
+    else
+      not_an_admin
+    end
   end
 
   # POST /proveniences
@@ -54,11 +69,25 @@ class ProveniencesController < ApplicationController
   # DELETE /proveniences/1
   # DELETE /proveniences/1.json
   def destroy
-    @provenience.destroy
-    respond_to do |format|
-      format.html { redirect_to proveniences_url, notice: 'Provenience was successfully destroyed.' }
-      format.json { head :no_content }
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      else
+        @provenience.destroy
+        respond_to do |format|
+          format.html { redirect_to proveniences_url, notice: 'Provenience was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
+    else
+      not_an_admin
     end
+  end
+
+  # redirect to proveniences with a warning message
+  def not_an_admin
+    redirect_to "/proveniences"
+    flash[:notice] = 'This page is not accessible'
   end
 
   private

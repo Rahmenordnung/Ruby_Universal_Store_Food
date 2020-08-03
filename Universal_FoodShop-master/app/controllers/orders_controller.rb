@@ -14,18 +14,31 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @user = User.find(current_user.id)
-        @orderitems = Orderitem.where(order_id: params[:id])
+    @orderitems = Orderitem.where(order_id: params[:id])
   end
 
   # GET /orders/new
   def new
-    @order = Order.new
-    
-    
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      else
+        @order = Order.new
+      end
+    else
+      not_an_admin
+    end
   end
 
   # GET /orders/1/edit
   def edit
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      end
+    else
+      not_an_admin
+    end
   end
 
   # POST /orders
@@ -62,11 +75,25 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
-    @order.destroy
-    respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
-      format.json { head :no_content }
+    if user_signed_in?
+      if !current_user.admin?
+        not_an_admin
+      else
+        @order.destroy
+        respond_to do |format|
+          format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
+    else
+      not_an_admin
     end
+  end
+
+  # redirect to orders with a warning message
+  def not_an_admin
+    redirect_to "/orders"
+    flash[:notice] = 'This page is not accessible'
   end
 
   private

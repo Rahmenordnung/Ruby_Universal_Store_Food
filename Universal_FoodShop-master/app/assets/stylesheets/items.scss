@@ -4,6 +4,36 @@
 
 /*item pages---------------------*/
 
+.image{
+ 
+  background-color: white;
+  transition: transform .2s;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.image:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5); 
+}
+
+
+#custom-nav {  
+    -webkit-box-shadow: 10px 20px 20px #0072BA;  
+    -moz-box-shadow:    20px 20px 20px #0072BA;  
+    box-shadow:         20px 20px 20px #0072BA;  
+    z-index:999;  
+}
+
+.navbar-nav mr-auto{
+    font-size: larger;
+    
+}
+
+
+
 .card {
 border:none;
 width:auto;

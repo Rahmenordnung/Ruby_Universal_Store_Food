@@ -8,6 +8,8 @@ class ItemsController < ApplicationController
     
     @categories = Category.all
     
+    @proveniences = Provenience.all
+    
   end
 
   # GET /items/1

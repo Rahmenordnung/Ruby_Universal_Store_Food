@@ -1,41 +1,26 @@
-
+ <div class="mainCont">
     
-    <h1>Heool here are all the users</h1>
-
-<div class="mainCont">
+    <h1>All The People...... So Many People....in this universal store.....</h1>
     
-    <h1>All The People...... So Many People....</h1>
-    
-<% @users.each do |user| %>
-
-
-<ul class="list-group">
-  <li class="list-group-item active">User Id:  <%= user.id %> </li>
-  <li class="list-group-item">email: <%= user.email %></li>
-  <li class="list-group-item">Admin: <%= user.admin %></li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
-</ul>
-
-
-    <div class="itemhols">
-    
-   <h1></h1>
-   <h1></h1>
-   <h1></h1>
-   
-   
-
-
-   
-    <p><a href="/upgrade/<%= user.id %>" class="button">Make Admin</a></p>
-    </div>
-   
-<% end %>
-    
-    
+<%# table for all users  %>    
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">User Id </th>
+          <th scope="col">Email</th>
+          <th scope="col">Admin</th>
+          <th scope="col">action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td>User Id:  <%= user.id %> ></td>
+            <td>email: <%= user.email %></td>
+            <td>Admin: <%= user.admin %></td>
+            <td> <a href="/upgrade/<%= user.id %>" class="button">Make Admin</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 </div>
-
-
-
-

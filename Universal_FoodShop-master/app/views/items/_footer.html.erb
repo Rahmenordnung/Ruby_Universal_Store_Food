@@ -3,7 +3,6 @@
     <small>Copyright &copy; Your Website</small>
     <% if user_signed_in? %>
       <% if current_user.admin? %> 
-      <%= link_to 'New Item', new_item_path, :class =>"button", :role=>"button" %>
       <% end %>
     <% end %>
   </div>

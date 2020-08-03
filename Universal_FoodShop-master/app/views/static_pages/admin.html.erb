@@ -1,11 +1,40 @@
-<h1>StaticPages#admin</h1>
-<p>Find me in app/views/static_pages/admin.html.erb</p>
+<h1>StaticPages only for proffessional administrators</h1>
+
 <% if user_signed_in? %>
     <% if current_user.admin? %>
-        <h3>Admin user options</h3>
-        <a <%= link_to "All users List", "/allusers", :role => "button" %></a><br> 
-        <a <%= link_to 'New Item',  new_item_path, :role => "button" %> </a><br>
-        <a <%= link_to 'New Category', new_category_path, :role=>"button"  %></a><br>
-        <a <%= link_to 'New provenience area', new_provenience_path, :role=>"button" %></a><br>
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">View what we have in the shop</th>
+      <th scope="col">Expand the shop</th>
+      <th scope="col">All users lits</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+
+      <tr>
+        <td>
+            <%= link_to 'All categories', categories_path, :role=>"button", :class => "btn btn-inverse"%><br>
+            <%= link_to 'All proveniences', proveniences_path, :role=>"button", :class => "btn btn-inverse" %><br>
+            <%= link_to 'All items', items_path, :role=>"button", :class => "btn btn-inverse" %><br>
+        </td>
+
+        <td><%= link_to 'New Item',  new_item_path, :role => "button", :class => "btn btn-inverse" %> <br>  
+            <%= link_to 'New Category', new_category_path, :role => "button", :class => "btn btn-inverse"  %><br>
+            <%= link_to 'New provenience area', new_provenience_path, :role=>"button", :class => "btn btn-inverse" %><br>
+        </td>
+        
+        <td><%= link_to "All users List", "/allusers", :role => "button", :class => "btn btn-inverse" %></td>
+        
+      </tr>
+      
+
+</table>
+
+    
+
+
     <% end %>
 <% end %>

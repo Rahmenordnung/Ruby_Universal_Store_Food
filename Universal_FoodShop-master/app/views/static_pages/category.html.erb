@@ -7,33 +7,37 @@
     <% end %>
 <h1>Items</h1>
     <% @items.each do |item| %>
-    
-
-    
       <div class="itemhols">
-        <h1><%= item.title %></h1>
-        <%= link_to (image_tag item.image_url, :class=>"itemholsIm"), item %>
-       <p><%= item.description %>
-       </p>
-       <p><%= item.price %>
-        <br>
-        <%= item.category %>
-        <br>
-        <%#<%= item.brand %>
-        </p>
-        <p>        
-         
-          <a href="/cart/<%= item.id %>" class="button">Add to Cart</a>  
-          <%= link_to 'Show', item, :class =>"button", :role=>"button" %>
-        
-
-        <% if session[:login] == 1 %> 
-        <%= link_to 'Edit', edit_item_path(item), :class =>"button", :role=>"button" %>
-        <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"button",           :role=>"button" %>
-        
-        <% end %>
-        </p>
-     </div>
+        <div class="card border-info mb-3 ml-3 mr-3">
+          <%= link_to (image_tag item.image_url, :class => "card-img-top"), item %>
+          <div class="card-body">
+            <h1 class="card-title"><%= item.title %></h1>
+            Category: <%= item.category %><br>
+            <p class="price">
+            Price <%= number_to_currency(item.price, :unit => "€") %>
+            <%#=    Brand: <%= item.brand %>
+            </p>
+            
+            <%= link_to 'View Item',  item, :class => "btn btn-primary", :role => "button" %>
+            
+            <!-- show "sold out" or "add to cart" -->
+            <% if item.inStock? %>
+              <p>
+                <button class="btn1" onclick="window.location.href='/cart/<%= item.id %>'">
+                  <span class="circle" aria-hidden="true">
+                      <span class="icon arrow"></span>
+                  </span>
+                  <span class="button-text">Add to Cart</span>
+                </button>
+              </p>
+            <% else %>
+              <p class="error">Sold Out</p>
+            <% end %>
+      
+          </div><!-- end card-body -->       
+        </div><!-- end card -->
+        <div class="clear">&nbsp;</div>
+      </div><!-- itemhols -->
     <% end %>
   <br>
 

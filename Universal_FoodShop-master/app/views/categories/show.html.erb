@@ -1,19 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @category.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @category.description %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @category.image %>
-</p>
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<div id="single-item">
+  <%= image_tag @category.image, :class => 'item-image'  %>
+  <h3><%= @category.title %></h3>
+  <h4>Description:</h4>
+  <p><%= @category.description %></p>
+  
+  <%= link_to 'Back to Categories',  categories_path, :class => "button", :role => "button" %>
+  
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <a <%= link_to 'Edit', edit_category_path(@category), :role=>"button" %></a>
+      <a <%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' }, :role=>"button" %></a>
+    <% end %>
+  <% end %>
+</div>

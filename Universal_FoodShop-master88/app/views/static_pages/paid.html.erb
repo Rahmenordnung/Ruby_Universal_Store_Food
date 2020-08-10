@@ -1,0 +1,23 @@
+<div role="alert">
+  <p class="alert"><%= notice %></p>
+</div>
+
+  <div class="container">
+    <div class="row">
+        <div class="paid-info">
+          <h1 class="text-success">Thanks, you paid <strong></strong></h3>
+            <h5 class="text-info">Your products are on the way! <br> </h5>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active text-success" aria-current="page">
+                  <strong>We will send them to you at the address present in your profile:<br>
+                  <%= current_user.address %></strong>
+                </li>
+              </ol>
+            </nav>
+            <%= image_tag "imageThanks.jpg" %>
+            <p><a href="/orders/" class="btn btn-info mt-2">View orders list now</a></p>
+        </div>
+    </div>
+  </div>
+ <%= render 'items/footer' %> 

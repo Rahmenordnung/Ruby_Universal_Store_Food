@@ -1,2 +1,0 @@
-class Provenience < ApplicationRecord
-end

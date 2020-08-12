@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   get '/help' => 'static_pages#help' 
   get '/about'=> 'static_pages#about'
   get '/admin'=> 'static_pages#admin'
+  get '/makeadmin'=> 'static_pages#makeadmin'
   get '/products'=> 'items#index'
   
 

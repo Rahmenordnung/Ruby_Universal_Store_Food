@@ -65,5 +65,8 @@ class StaticPagesController < ApplicationController
     @users = User.all
   end
 
+  def makeadmin
+  end
+
   
 end

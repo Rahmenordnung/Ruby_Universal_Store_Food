@@ -18,6 +18,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  height: 50rem;
 }
 p {
     font-style: oblique;
@@ -54,9 +55,12 @@ iframe{
     height: 300px;
     margin-bottom: 50px;
     opacity: 0.9!important;
+    width: 40%;
+    margin-top: 1%;
 }
 
 .right{
+    margin-top: 1%;
     float:right;
     background-color: black;
     opacity: 0.6;
@@ -68,6 +72,7 @@ iframe{
 }
 
 .left{
+    margin-top: 1%;
     float:left;
     background-color: black;
     opacity: 0.6;
@@ -178,6 +183,7 @@ iframe{
   transition-delay: 0.3s;
 }
 
+
 /*offer box image effects*/
 
 .fa {
@@ -212,3 +218,48 @@ iframe{
   background: #bb0000;
   color: white;
 }
+
+/* about */
+
+@media screen and (max-width: 992px){
+    .image {
+    width: 90%;
+    margin: 5%;
+    height: 400px;
+    
+  }
+  .left {
+    width: 90%;
+    margin: 5%;
+    
+  }
+  .right {
+    width: 90%;
+    margin: 5%;
+  }
+  .about-big{
+    height: 118rem;
+  }
+  
+}
+
+@media screen and (max-width: 600px) {
+  .image {
+    width: 90%;
+    margin: 5%;
+    height: 400px;
+    
+  }
+  .left {
+    width: 90%;
+    margin: 5%;
+    
+  }
+  .right {
+    width: 90%;
+    margin: 5%;
+  }
+  .about-big{
+    height: 118rem;
+  }
+  }

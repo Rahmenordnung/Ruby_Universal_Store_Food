@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 <% if !user_signed_in? %>
   <p>You must be signed in to view this page.</p>
 <% else %>
@@ -10,7 +16,7 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Order date</th>
-          <th scope="col">User email</th>
+          <th scope="col">User name/ id</th>
           <th scope="col">Status</th>
           <% if current_user.admin? %>
             <th scope="col" colspan="4">Options</th>
@@ -25,7 +31,7 @@
         <% @orders.each do |order| %>
           <tr>
             <td><%= order.order_date %></td>
-            <td><%= order.user.email %></td>
+            <td><%= order.user %></td>
             <td><%= order.status %></td>
             <td><%= link_to 'Show', order, :role => "button", :class => "btn btn-primary mb-2" %></td>
             <% if current_user.admin? %>
